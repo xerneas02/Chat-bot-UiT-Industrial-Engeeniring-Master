@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Industrial Engineering M.Sc. Chatbot</title>
+    <link rel="stylesheet" href="static/style.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Font Awesome for spinner icon -->
+</head>
+<body>
+    <h1>Industrial Engineering M.Sc. Chatbot (UiT Narvik)</h1>
+    <div id="conversationContainer" class="conversation-container"></div>
+    <div class="input-container">
+        <input type="text" id="questionInput" class="question" placeholder="Ask a question...">
+        <button id="askButton" class="question" onclick="askQuestion()">Ask</button>
+        <div id="loadingSpinner" class="loading-spinner hidden">
+            <i class="fas fa-spinner fa-spin"></i> <!-- Font Awesome spinner icon -->
+        </div>
+        <div id="ratingContainer" class="star-rating hidden">
+            Rate the answer:
+            <div class="star-radio">
+                <input type="radio" class="star" id="star5" name="rating" value="5"><label for="star5">&#9733;</label>
+                <input type="radio" class="star" id="star4" name="rating" value="4"><label for="star4">&#9733;</label>
+                <input type="radio" class="star" id="star3" name="rating" value="3"><label for="star3">&#9733;</label>
+                <input type="radio" class="star" id="star2" name="rating" value="2"><label for="star2">&#9733;</label>
+                <input type="radio" class="star" id="star1" name="rating" value="1"><label for="star1">&#9733;</label>
+            </div>
+            <input type="text" id="commentInput" placeholder="Add a comment (optional)">
+            <button id="submitRatingButton" onclick="submitRating()">Submit Rating</button>
+        </div>
+    </div>
+    
+    
+    
+
+
+    <script src="static/script.js"></script>
+</body>
+</html>
