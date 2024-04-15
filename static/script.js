@@ -5,6 +5,10 @@ async function askQuestion() {
     const ratingContainer = document.getElementById('ratingContainer');
     const questions = document.getElementsByClassName('question');
 
+    if(question.length === 0) {
+        return;
+    }
+
     for (let index = 0; index < questions.length; index++) {
         if (questions[index].tagName.toLowerCase() === 'input' || 
             questions[index].tagName.toLowerCase() === 'button') {
@@ -106,11 +110,17 @@ async function submitRating() {
 }
 
 
-// Trigger askQuestion function when Enter key is pressed
 document.getElementById('questionInput').addEventListener('keydown', function(event) {
     if (event.key === 'Enter') {
         event.preventDefault();
         askQuestion();
+    }
+});
+
+document.getElementById('ratingContainer').addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        event.preventDefault();
+        submitRating();
     }
 });
 
@@ -145,7 +155,7 @@ function createBotMessageElement(message) {
     messageContent.classList.add("message-content");
 
     var botProfilePicture = document.createElement("img");
-    botProfilePicture.src = "https://th.bing.com/th/id/OIG4.alKiiFcDb1F28PIUwDEd?w=1024&h=1024&rs=1&pid=ImgDetMain";
+    botProfilePicture.src = "static/chatbot_profile_picture.jpg";
     botProfilePicture.alt = "Chatbot Profile Picture";
     botProfilePicture.classList.add("profile-picture");
 
@@ -161,7 +171,8 @@ function createBotMessageElement(message) {
     const linkRegexes = [
         /(https?:\/\/\S*\.?uit\.no\S*)/g, // Links from uit.no
         /(https?:\/\/\S*\.?samskipnaden\.no\S*)/g, // Links from samskipnaden.no
-        /(https?:\/\/www\.facebook\.com\/\S*)/g // Facebook links
+        /(https?:\/\/www\.facebook\.com\/\S*)/g, // Facebook links
+        /(https?:\/\/www.universal-robots.com\/S*)/g
     ];
 
     // Split the message into parts based on the regular expressions

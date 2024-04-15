@@ -50,7 +50,8 @@ h1 {
     border-radius: 10px;
     padding: 15px 20px;
     margin: 5px 0;
-    display: flex;
+   /* display: flex;*/
+    display: block;
     flex-direction: row; /* Ensure content flows horizontally */
     position: relative;
 }
@@ -204,4 +205,53 @@ a {
 
 a:hover {
     color: #babfff;
+}
+
+/* Adjustments for mobile devices */
+@media only screen and (max-width: 600px) {
+
+    #ratingContainer span {
+        display: none; /* Hide the text "Rate the answer" */
+    }
+
+    #ratingContainer {
+        align-items: center; /* Align items vertically */
+        margin-top: 10px; /* Add margin to separate from the rating stars */
+    }
+
+    .conversation-container {
+        width: 90%;
+    }
+
+    h1 {
+        font-size: 18px; /* Reduce title font size */
+    }
+
+    .input-container {
+        padding: 5px; /* Reduce padding */
+    }
+
+    #questionInput {
+        padding: 8px; /* Adjust input padding */
+        font-size: 14px; /* Reduce font size */
+    }
+
+    #askButton {
+        padding: 8px 15px; /* Adjust button padding */
+        font-size: 14px; /* Reduce font size */
+    }
+
+    .star-rating label {
+        font-size: 20px; /* Reduce font size */
+    }
+
+    .star-rating input[type="text"],
+    .star-rating button {
+        margin-left: 5px; /* Adjust margin */
+    }
+
+    .loading-spinner {
+        font-size: 20px; /* Reduce font size */
+        margin-left: 5px; /* Adjust margin */
+    }
 }

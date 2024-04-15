@@ -9,7 +9,17 @@
 </head>
 <body>
     <h1>Industrial Engineering M.Sc. Chatbot (UiT Narvik)</h1>
-    <div id="conversationContainer" class="conversation-container"></div>
+    <div id="conversationContainer" class="conversation-container">
+        <div class="chat-message bot-message">
+            <div class="message-content">
+                <img src="static/chatbot_profile_picture.jpg" alt="Chatbot Profile Picture" class="profile-picture">
+                <span class="message-name">H4nn4h:</span><span class="message-text">
+                    Hello! I am H4nn4h, a chatbot here to assist you with any inquiries you have regarding the Master of Science program in Industrial Engineering at UiT The Arctic University of Norway in Narvik.
+                    Feel free to ask any questions you may have in any language!
+                </span>
+            </div>
+        </div>
+    </div>
     <div class="input-container">
         <input type="text" id="questionInput" class="question" placeholder="Ask a question...">
         <button id="askButton" class="question" onclick="askQuestion()">Ask</button>
@@ -17,7 +27,7 @@
             <i class="fas fa-spinner fa-spin"></i> <!-- Font Awesome spinner icon -->
         </div>
         <div id="ratingContainer" class="star-rating hidden">
-            Rate the answer:
+            <span>Rate the answer:</span>
             <div class="star-radio">
                 <input type="radio" class="star" id="star5" name="rating" value="5"><label for="star5">&#9733;</label>
                 <input type="radio" class="star" id="star4" name="rating" value="4"><label for="star4">&#9733;</label>
@@ -26,14 +36,9 @@
                 <input type="radio" class="star" id="star1" name="rating" value="1"><label for="star1">&#9733;</label>
             </div>
             <input type="text" id="commentInput" placeholder="Add a comment (optional)">
-            <button id="submitRatingButton" onclick="submitRating()">Submit Rating</button>
+            <button id="submitRatingButton" onclick="submitRating()">Submit</button>
         </div>
     </div>
-    
-    
-    
-
-
     <script src="static/script.js"></script>
 </body>
 </html>
