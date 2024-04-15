@@ -8,6 +8,10 @@ from langchain.schema import (
 import os
 from datetime import datetime
 import sys
+from threading import Lock
+
+lock = Lock()
+
 
 deploy = False
 
@@ -78,13 +82,14 @@ def ask():
 def rate():
     global prompt_answer
     rating = request.json["rating"]
-    comment = request.json.get("comment", "")  # Get comment if provided, otherwise default to empty string
+    comment = request.json.get("comment", "")
     comment = comment.replace("\n", " ")
     prompt_answer['prompt'] = prompt_answer['prompt'].replace(';', ',').replace('\n', ' ')
     prompt_answer['answer'] = prompt_answer['answer'].replace(';', ',').replace('\n', ' ')
     
-    with open("data.csv", "a") as file:
-        file.write(f"{prompt_answer['prompt']};{prompt_answer['answer']};{rating};{comment}\n")
+    with lock:
+        with open("data.csv", "a") as file:
+            file.write(f"{prompt_answer['prompt']};{prompt_answer['answer']};{rating};{comment}\n")
 
     return jsonify({"message": "Rating submitted successfully"})
 

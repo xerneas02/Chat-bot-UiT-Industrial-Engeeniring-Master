@@ -12,17 +12,13 @@ async function askQuestion() {
         }     
     }
 
-    // Show loading spinner
     loadingSpinner.classList.remove('hidden');
 
-    // Append user message to conversation container
     const userMessage = createUserMessageElement(question);
     conversationContainer.appendChild(userMessage);
 
-    // Clear question input
     document.getElementById('questionInput').value = '';
 
-    // Scroll to the bottom of conversation container
     window.scrollTo(0, document.body.scrollHeight);
 
     // Create and append bot message element with typing animation
@@ -40,7 +36,6 @@ async function askQuestion() {
 
     const data = await response.json();
 
-    // Hide loading spinner after receiving response
     loadingSpinner.classList.add('hidden');
 
     // Replace typing animation with actual bot message
