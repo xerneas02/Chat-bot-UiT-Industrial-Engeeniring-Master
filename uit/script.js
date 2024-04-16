@@ -1,8 +1,17 @@
+function closeChatbot() {
+    document.getElementById('chatbotPopup').style.display = 'none';
+    document.getElementById('reopenButton').style.display = 'block';
+}
+
+function reopenChatbot() {
+    document.getElementById('chatbotPopup').style.display = 'block';
+    document.getElementById('reopenButton').style.display = 'none';
+}
+
+
 async function askQuestion() {
     const question = document.getElementById('questionInput').value;
     const conversationContainer = document.getElementById('conversationContainer');
-    const loadingSpinner = document.getElementById('loadingSpinner');
-    const ratingContainer = document.getElementById('ratingContainer');
     const questions = document.getElementsByClassName('question');
 
     if(question.length === 0) {
@@ -15,8 +24,6 @@ async function askQuestion() {
             questions[index].disabled = true;
         }     
     }
-
-    loadingSpinner.classList.remove('hidden');
 
     const userMessage = createUserMessageElement(question);
     conversationContainer.appendChild(userMessage);
@@ -40,8 +47,6 @@ async function askQuestion() {
 
     const data = await response.json();
 
-    loadingSpinner.classList.add('hidden');
-
     // Replace typing animation with actual bot message
     const actualBotMessage = createBotMessageElement(data.content);
     conversationContainer.replaceChild(actualBotMessage, botMessage);
@@ -49,14 +54,9 @@ async function askQuestion() {
     // Scroll to the bottom of conversation container
     window.scrollTo(0, document.body.scrollHeight);
 
-    // Show rating container
-    ratingContainer.classList.remove('hidden');
-    ratingContainer.style.display = 'flex';
-
     // Hide question elements and enable input elements
     for (let index = 0; index < questions.length; index++) {
         questions[index].disabled = false;
-        questions[index].classList.add('hidden');
     }
 }
 
@@ -72,80 +72,12 @@ function createBotTypingElement() {
     return botMessage;
 }
 
-
-
-async function submitRating() {
-    const rating = document.querySelector('input[name="rating"]:checked').value;
-    const comment = document.getElementById('commentInput').value;
-    const questions = document.getElementsByClassName('question');
-
-    // Send rating and comment to server
-    const response = await fetch('/rate', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ rating: rating, comment: comment })
-    });
-
-    // Empty the comment input
-    document.getElementById('commentInput').value = '';
-
-    // Reset the rating
-    const ratingInputs = document.querySelectorAll('input[name="rating"]');
-    ratingInputs.forEach(input => {
-        input.checked = false;
-    });
-
-    // Hide rating container after submitting
-    for (let index = 0; index < questions.length; index++) {
-        if (questions[index].tagName.toLowerCase() === 'input' || 
-            questions[index].tagName.toLowerCase() === 'button') {
-            questions[index].disabled = false;
-            questions[index].classList.remove('hidden');
-        } 
-    }
-    document.getElementById('ratingContainer').classList.add('hidden');
-    ratingContainer.style.display = 'none';
-}
-
-
 document.getElementById('questionInput').addEventListener('keydown', function(event) {
     if (event.key === 'Enter') {
         event.preventDefault();
         askQuestion();
     }
 });
-
-document.getElementById('ratingContainer').addEventListener('keydown', function(event) {
-    if (event.key === 'Enter') {
-        event.preventDefault();
-        submitRating();
-    }
-});
-
-function createUserMessageElement(message) {
-    var userMessageElement = document.createElement("div");
-    userMessageElement.classList.add("chat-message", "user-message");
-
-    var messageContent = document.createElement("div");
-    messageContent.classList.add("message-content");
-
-    var messageName = document.createElement("span");
-    messageName.classList.add("message-name");
-    messageName.textContent = "You:";
-
-    var messageText = document.createElement("span");
-    messageText.classList.add("message-text");
-    messageText.textContent = message;
-
-    messageContent.appendChild(messageName);
-    messageContent.appendChild(messageText);
-
-    userMessageElement.appendChild(messageContent);
-
-    return userMessageElement;
-}
 
 function markdownToHtml(markdownText) {
     // Replace newline characters with <br> tags
@@ -224,7 +156,7 @@ function createBotMessageElement(message) {
     messageContent.classList.add("message-content");
 
     var botProfilePicture = document.createElement("img");
-    botProfilePicture.src = "static/chatbot_profile_picture.jpg";
+    botProfilePicture.src = "uit/chatbot_profile_picture.jpg";
     botProfilePicture.alt = "Chatbot Profile Picture";
     botProfilePicture.classList.add("profile-picture");
 
@@ -250,4 +182,29 @@ function createBotMessageElement(message) {
     botMessageElement.appendChild(messageContent);
 
     return botMessageElement;
+}
+
+
+
+function createUserMessageElement(message) {
+    var userMessageElement = document.createElement("div");
+    userMessageElement.classList.add("chat-message", "user-message");
+
+    var messageContent = document.createElement("div");
+    messageContent.classList.add("message-content");
+
+    var messageName = document.createElement("span");
+    messageName.classList.add("message-name");
+    messageName.textContent = "You:";
+
+    var messageText = document.createElement("span");
+    messageText.classList.add("message-text");
+    messageText.textContent = message;
+
+    messageContent.appendChild(messageName);
+    messageContent.appendChild(messageText);
+
+    userMessageElement.appendChild(messageContent);
+
+    return userMessageElement;
 }
