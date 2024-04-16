@@ -28,6 +28,7 @@ async function askQuestion() {
     // Create and append bot message element with typing animation
     const botMessage = createBotTypingElement();
     conversationContainer.appendChild(botMessage);
+    window.scrollTo(0, document.body.scrollHeight);
 
     // Fetch bot response
     const response = await fetch('/ask', {
