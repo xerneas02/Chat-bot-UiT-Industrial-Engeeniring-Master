@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot Popup</title>
+    <link rel="stylesheet" href="uit/style.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Font Awesome for spinner icon -->
+</head>
+<body>
+    <!-- Reopen button -->
+    <button id="reopenButton" class="reopen-btn" onclick="reopenChatbot()">
+        <i class="fas fa-comments"></i> <!-- Font Awesome chat icon -->
+    </button>
+    
+
+    <!-- Chatbot popup container -->
+    <div id="chatbotPopup" class="chatbot-popup">
+        <button class="close-btn" onclick="closeChatbot()">
+            <span class="bubble"></span>
+            <span class="close-icon">&times;</span>
+        </button>
+        <div class="chatbot-header">
+            <h2 class="popup-title">Industrial Engineering M.Sc. Chatbot</h2>
+        </div>
+        <div id="conversationContainer" class="conversation-container">
+            <div class="chat-message bot-message">
+                <div class="message-content">
+                    <img src="uit/chatbot_profile_picture.jpg" alt="Chatbot Profile Picture" class="profile-picture">
+                    <span class="message-name">H4nn4h:</span><span class="message-text">
+                        Hello! I am H4nn4h, a chatbot here to assist you with any inquiries you have regarding the Master of Science program in Industrial Engineering at UiT The Arctic University of Norway in Narvik.
+                        Feel free to ask any questions you may have in any language!
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="input-container">
+            <input type="text" id="questionInput" class="question" placeholder="Ask a question...">
+            <button id="askButton" class="question" onclick="askQuestion()">Ask</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/remarkable/dist/remarkable.min.js"></script>
+    <script src="uit/script.js"></script>
+    
+</body>
+</html>

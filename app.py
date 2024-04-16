@@ -24,7 +24,7 @@ if not os.path.exists("data.csv"):
     with open("data.csv", "w") as file:
         file.write("Question;Answer;Rating;Comment\n")
 
-app = Flask(__name__, static_folder='static')
+app = Flask(__name__, static_folder='uit')
 
 chat = ChatOpenAI(
     openai_api_key= os.environ.get("OPENAI_API_KEY"),

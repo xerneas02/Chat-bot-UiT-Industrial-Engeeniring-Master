@@ -30,11 +30,12 @@ async function askQuestion() {
 
     document.getElementById('questionInput').value = '';
 
-    window.scrollTo(0, document.body.scrollHeight);
+    conversationContainer.scrollTop = conversationContainer.scrollHeight;
 
     // Create and append bot message element with typing animation
     const botMessage = createBotTypingElement();
     conversationContainer.appendChild(botMessage);
+    conversationContainer.scrollTop = conversationContainer.scrollHeight;
 
     // Fetch bot response
     const response = await fetch('/ask', {
@@ -52,7 +53,7 @@ async function askQuestion() {
     conversationContainer.replaceChild(actualBotMessage, botMessage);
 
     // Scroll to the bottom of conversation container
-    window.scrollTo(0, document.body.scrollHeight);
+    conversationContainer.scrollTop = conversationContainer.scrollHeight;
 
     // Hide question elements and enable input elements
     for (let index = 0; index < questions.length; index++) {
@@ -64,10 +65,14 @@ function createBotTypingElement() {
     const botMessage = document.createElement('div');
     botMessage.classList.add('chat-message', 'bot-message');
 
+    const messageContent = document.createElement('div');
+    messageContent.classList.add('message-content');
+
     const typingAnimation = document.createElement('div');
     typingAnimation.classList.add('dot-flashing');
 
-    botMessage.appendChild(typingAnimation);
+    messageContent.appendChild(typingAnimation);
+    botMessage.appendChild(messageContent);
 
     return botMessage;
 }

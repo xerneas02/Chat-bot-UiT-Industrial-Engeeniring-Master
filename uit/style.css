@@ -1,4 +1,5 @@
 .chatbot-popup {
+    max-height: 80%;
     position: fixed;
     display: none;
     bottom: 20px; /* Adjust as needed */
@@ -9,19 +10,20 @@
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     z-index: 1000;
+    font-family: "Arial", sans-serif;
+}
+
+.chatbot-popup h2{
+    font-size: 16px!important;
+    font-weight: bold !important;
 }
 
 .chatbot-header {
-    padding: 10px;
+    padding-bottom: 5px;
     border-bottom: 1px solid #ccc;
     display: flex;
     justify-content: center; /* Center the content horizontally */
     align-items: center; /* Center the content vertically */
-}
-
-
-.popup-title {
-    font-size: 16px; /* Adjust font size as needed */
 }
 
 .chat-message {
@@ -64,8 +66,10 @@
 }
 
 .message-text {
+    max-width: 100%;
     position: relative; /* Ensure proper positioning */
     padding-top: 20px; /* Adjust padding to make space for the profile picture */
+    word-wrap: break-word;
 }
 
 .bot-message .message-content {
@@ -76,20 +80,18 @@
     font-weight: bold;
 }
 
-.message-text {
-    word-wrap: break-word;
-}
-
 .bot-message .message-text a {
     color: #e6fff7; /* Set link color to a different color, like orange */
     text-decoration: underline; /* Add underline for better visibility */
 }
 .close-btn {
-    position: relative;
+    position: absolute;
     background: none;
     border: none;
     font-size: 20px;
     cursor: pointer;
+    top: 10px;
+    left:10px;
     padding: 0; /* Remove default padding */
     width: 30px; /* Set width to match the cross */
     height: 30px; /* Set height to match the cross */
@@ -135,7 +137,7 @@
 
 
 .conversation-container {
-    max-height: 300px; /* Adjust as needed */
+    max-height: 64vh; /* Adjust as needed */
     overflow-y: auto;
     padding: 10px;
 }
