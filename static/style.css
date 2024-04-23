@@ -27,7 +27,14 @@ h1 {
 #questionInput {
     padding: 10px;
     font-size: 16px;
+    width: 100%; /* Utilise toute la largeur disponible */
+    max-width: 400px; /* Largeur maximale de l'input */
+    height: 20px; /* Hauteur initiale */
+    transition: height 0.3s; /* Animation de transition de la hauteur */
+    overflow-y: hidden; /* Cache le débordement vertical */
+    resize: none; /* Empêche la redimensionnement de l'input */
 }
+
 
 #askButton {
     padding: 10px 20px;
@@ -234,6 +241,7 @@ a:hover {
     #questionInput {
         padding: 8px; /* Adjust input padding */
         font-size: 14px; /* Reduce font size */
+        max-width: 200px;
     }
 
     #askButton {

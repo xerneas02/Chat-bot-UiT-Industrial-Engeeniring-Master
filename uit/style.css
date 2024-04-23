@@ -37,7 +37,7 @@
 }
 
 .bot-message .message-content {
-    background-color: #007bff; /* Adjust color as needed */
+    background-color: #007396; /* Adjust color as needed */
     color: #fff; /* Adjust color as needed */
 }
 
@@ -81,7 +81,7 @@
 }
 
 .bot-message .message-text a {
-    color: #e6fff7; /* Set link color to a different color, like orange */
+    color: #bdffed; /* Set link color to a different color, like orange */
     text-decoration: underline; /* Add underline for better visibility */
 }
 .close-btn {
@@ -122,7 +122,7 @@
     position: fixed;
     bottom: 20px; /* Adjust as needed */
     right: 20px; /* Adjust as needed */
-    background-color: #007bff; /* Adjust color as needed */
+    background-color: #007396; /* Adjust color as needed */
     color: #fff; /* Adjust color as needed */
     border: none;
     padding: 10px;
@@ -132,7 +132,7 @@
 }
 
 .reopen-btn:hover {
-    background-color: #0056b3;
+    background-color: #01a6d8;
 }
 
 
@@ -159,7 +159,7 @@
 }
 
 .input-container button {
-    background-color: #007bff;
+    background-color: #007396;
     color: #fff;
     border: none;
     border-radius: 4px;
@@ -167,7 +167,7 @@
 }
 
 .input-container button:hover {
-    background-color: #0056b3;
+    background-color: #01a6d8;
 }
 
 

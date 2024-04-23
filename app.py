@@ -14,9 +14,11 @@ lock = Lock()
 
 
 deploy = False
+static = 'static'
 
 if len(sys.argv) >= 2:
     deploy = ("-d" in sys.argv or "--deploy" in sys.argv)
+    static = 'uit' if ("-e" in sys.argv or "--exemple" in sys.argv) else 'static'
 
 today = datetime.today().strftime('%Y-%m-%d')
 
@@ -24,7 +26,7 @@ if not os.path.exists("data.csv"):
     with open("data.csv", "w") as file:
         file.write("Question;Answer;Rating;Comment\n")
 
-app = Flask(__name__, static_folder='uit')
+app = Flask(__name__, static_folder=static)
 
 chat = ChatOpenAI(
     openai_api_key= os.environ.get("OPENAI_API_KEY"),
@@ -56,7 +58,7 @@ def ask():
     query = request.json["query"]
     prompt_answer["prompt"] = query
 
-    augmented_prompt = f"""You are a chatbot named H4nn4h (devloped by Mathis Roubille) here to assist students in obtaining information about the UiT The Arctic University of Norway in Narvik, particularly regarding the Industrial Engineering M.Sc. program in Narvik. If the query is in a different language, as there are students from abroad, try to respond in their language. If the query is completely off-topic, please indicate so, but you can answer some questions if they are about Narvik, life there, or related topics not directly connected to the master's degree. Please keep responses brief and to the point if possible and try providing links when available (the interface handle markdown so you can write in markdown).
+    augmented_prompt = f"""You are a chatbot named H4nn4h (devloped by Mathis Roubille using GPT 3.5 turbo API) here to assist students in obtaining information about the UiT The Arctic University of Norway in Narvik, particularly regarding the Industrial Engineering M.Sc. program in Narvik. If the query is in a different language, as there are students from abroad, try to respond in their language. If the query is completely off-topic, please indicate so, but you can answer some questions if they are about Narvik, life there, or related topics not directly connected to the master's degree. Please keep responses brief and to the point if possible and try providing links when available (the interface handle markdown so you can write in markdown).
 
     Contexts:
     {source_knowledge}

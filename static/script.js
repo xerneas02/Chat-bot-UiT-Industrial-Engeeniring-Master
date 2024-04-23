@@ -10,7 +10,7 @@ async function askQuestion() {
     }
 
     for (let index = 0; index < questions.length; index++) {
-        if (questions[index].tagName.toLowerCase() === 'input' || 
+        if (questions[index].tagName.toLowerCase() === 'textarea' || 
             questions[index].tagName.toLowerCase() === 'button') {
             questions[index].disabled = true;
         }     
@@ -61,6 +61,34 @@ async function askQuestion() {
     }
 }
 
+let inputExpanded = false;
+
+document.getElementById('questionInput').addEventListener('click', function() {
+    if (!inputExpanded) {
+        expandInput();
+        inputExpanded = true;
+    }
+});
+
+document.getElementById('questionInput').addEventListener('blur', function() {
+    if (inputExpanded) {
+        resetInputHeight();
+        inputExpanded = false;
+    }
+});
+
+function expandInput() {
+    const input = document.getElementById('questionInput');
+    input.style.height = '160px';
+}
+
+function resetInputHeight() {
+    const input = document.getElementById('questionInput');
+    input.style.height = '20px'; // Initial height
+}
+
+
+
 function createBotTypingElement() {
     const botMessage = document.createElement('div');
     botMessage.classList.add('chat-message', 'bot-message');
@@ -100,7 +128,7 @@ async function submitRating() {
 
     // Hide rating container after submitting
     for (let index = 0; index < questions.length; index++) {
-        if (questions[index].tagName.toLowerCase() === 'input' || 
+        if (questions[index].tagName.toLowerCase() === 'textarea' || 
             questions[index].tagName.toLowerCase() === 'button') {
             questions[index].disabled = false;
             questions[index].classList.remove('hidden');
