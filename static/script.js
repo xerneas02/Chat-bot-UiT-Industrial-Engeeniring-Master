@@ -79,7 +79,7 @@ document.getElementById('questionInput').addEventListener('blur', function() {
 
 function expandInput() {
     const input = document.getElementById('questionInput');
-    input.style.height = '160px';
+    input.style.height = '80px';
 }
 
 function resetInputHeight() {

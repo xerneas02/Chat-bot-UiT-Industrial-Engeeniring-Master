@@ -9,9 +9,11 @@ import os
 from datetime import datetime
 import sys
 from threading import Lock
+from time import time
 
 lock = Lock()
 
+elapsed_time = 0
 
 deploy = False
 static = 'static'
@@ -24,7 +26,7 @@ today = datetime.today().strftime('%Y-%m-%d')
 
 if not os.path.exists("data.csv"):
     with open("data.csv", "w") as file:
-        file.write("Question;Answer;Rating;Comment\n")
+        file.write("Question;Answer;Rating;Comment;Time;Day\n")
 
 app = Flask(__name__, static_folder=static)
 
@@ -53,7 +55,9 @@ def index():
 @app.route("/ask", methods=["POST"])
 def ask():
     global prompt_answer
-    global messages
+    global messages, elapsed_time
+
+    start_time = time()
     
     query = request.json["query"]
     prompt_answer["prompt"] = query
@@ -77,12 +81,16 @@ def ask():
     messages.append(res)
 
     prompt_answer["answer"] = res.content
+
+    end_time = time()
+    elapsed_time = end_time - start_time
+
     # Return response in JSON format
     return jsonify({"content": res.content}) 
 
 @app.route("/rate", methods=["POST"])
 def rate():
-    global prompt_answer
+    global prompt_answer, elapsed_time
     rating = request.json["rating"]
     comment = request.json.get("comment", "")
     comment = comment.replace("\n", " ")
@@ -91,7 +99,7 @@ def rate():
     
     with lock:
         with open("data.csv", "a") as file:
-            file.write(f"{prompt_answer['prompt']};{prompt_answer['answer']};{rating};{comment}\n")
+            file.write(f"{prompt_answer['prompt']};{prompt_answer['answer']};{rating};{comment};{elapsed_time};{today}\n")
 
     return jsonify({"message": "Rating submitted successfully"})
 
