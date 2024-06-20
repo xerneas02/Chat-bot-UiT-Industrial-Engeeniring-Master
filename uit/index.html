@@ -127,14 +127,14 @@ $(document).ready(function(){
                 <div class="message-content">
                     <img src="uit/chatbot_profile_picture.jpg" alt="Chatbot Profile Picture" class="profile-picture">
                     <span class="message-name">H4nn4h:</span><span class="message-text">
-                        Hello! I am H4nn4h, a chatbot here to assist you with any inquiries you have regarding the Master of Science program in Industrial Engineering at UiT The Arctic University of Norway in Narvik.
+                        Hello! I am H4nn4h, a chatbot here to assist you with any inquiries you have regarding the Master of Science program in Industrial Engineering at UiT The Arctic University of Norway in Narvik.<br>
                         Feel free to ask any questions you may have in any language!
                     </span>
                 </div>
             </div>
         </div>
         <div class="input-container">
-            <input type="text" id="questionInput" class="question" placeholder="Ask a question...">
+            <textarea id="questionInput" class="question" placeholder="Ask a question..." onfocus="autoResize(this)" onblur="resetSize(this)"></textarea>
             <button id="askButton" class="question" onclick="askQuestion()">Ask</button>
         </div>
     </div>

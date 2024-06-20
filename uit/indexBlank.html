@@ -35,7 +35,7 @@
             </div>
         </div>
         <div class="input-container">
-            <input type="text" id="questionInput" class="question" placeholder="Ask a question...">
+            <textarea id="questionInput" class="question" placeholder="Ask a question..." onfocus="autoResize(this)" onblur="resetSize(this)"></textarea>
             <button id="askButton" class="question" onclick="askQuestion()">Ask</button>
         </div>
     </div>

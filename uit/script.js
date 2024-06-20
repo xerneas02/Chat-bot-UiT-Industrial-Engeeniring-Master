@@ -1,18 +1,22 @@
 function closeChatbot() {
-    document.getElementById('chatbotPopup').style.display = 'none';
+    document.getElementById('chatbotPopup').style.display = 'none' ;
     document.getElementById('reopenButton').style.display = 'block';
 }
 
 function reopenChatbot() {
     document.getElementById('chatbotPopup').style.display = 'block';
-    document.getElementById('reopenButton').style.display = 'none';
+    document.getElementById('reopenButton').style.display = 'none' ;
 }
 
 
+
 async function askQuestion() {
+    
     const question = document.getElementById('questionInput').value;
     const conversationContainer = document.getElementById('conversationContainer');
     const questions = document.getElementsByClassName('question');
+
+    
 
     if(question.length === 0) {
         return;

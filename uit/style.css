@@ -27,9 +27,20 @@
 }
 
 .chat-message {
+    max-width: 90%;
+    border-radius: 10px;
+    padding: 0px 4px;
+    margin: 5px 0;
     display: flex;
+    flex-direction: row;
     align-items: flex-start;
-    margin-bottom: 10px;
+    position: relative;
+}
+
+.chat-message .message-name {
+    font-size: 16px;
+    font-weight: bold;
+    margin-right: 10px;
 }
 
 .bot-message {
@@ -118,44 +129,76 @@
     z-index: 1; /* Set higher than the bubble */
 }
 
+/* Add pulsing animation to reopen button */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(0, 115, 150, 0.7);
+    }
+    70% {
+        transform: scale(1.1);
+        box-shadow: 0 0 0 10px rgba(0, 115, 150, 0);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(0, 115, 150, 0);
+    }
+}
+
 .reopen-btn {
     position: fixed;
-    bottom: 20px; /* Adjust as needed */
-    right: 20px; /* Adjust as needed */
-    background-color: #007396; /* Adjust color as needed */
-    color: #fff; /* Adjust color as needed */
+    width: 70px;
+    min-width: min-content;
+    height: 70px;
+    min-height: min-content;
+    bottom: 20px; 
+    right: 20px; 
+    font-size: 30px;
+    background-color: #026b8b; 
+    color: #fff; 
     border: none;
     padding: 10px;
     border-radius: 50%; /* Make the button circular */
     cursor: pointer;
     z-index: 1001; /* Ensure the button is above the chatbot popup */
+    animation: pulse 2s infinite; /* Apply pulsing animation */
 }
 
 .reopen-btn:hover {
     background-color: #01a6d8;
+    animation: none; /* Stop the animation on hover */
 }
 
+.dot-flashing {
+    margin-right: 10px;
+    margin-left: 10px;
+}
 
 .conversation-container {
-    max-height: 64vh; /* Adjust as needed */
+    max-height: 64vh; 
     overflow-y: auto;
     padding: 10px;
+    flex:1;
 }
 
 .input-container {
     display: flex;
     align-items: center;
-    padding: 10px;
+    padding: 0px 10px;
 }
 
-.input-container input[type="text"],
+.input-container textarea,
 .input-container button {
-    padding: 8px 10px;
+    padding: 18px 10px;
     margin-right: 5px;
 }
 
-.input-container input[type="text"] {
+.input-container textarea {
     flex: 1;
+    overflow-y: hidden; 
+    height: 60px; 
+    resize: none;
+    box-sizing: border-box;
 }
 
 .input-container button {
